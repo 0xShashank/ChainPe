@@ -2,6 +2,7 @@ import React from 'react'
 import { ScrollView,Image, View, Text, StyleSheet, TextInput , Pressable} from 'react-native'
 import { Dimensions } from 'react-native'
 const { width, height } = Dimensions.get('window')
+import { useNavigation } from '@react-navigation/native'
 
 const styles = StyleSheet.create({
     logincard: {
@@ -12,6 +13,7 @@ const styles = StyleSheet.create({
 })
 
 const LoginCards = (props) => {
+    const navigation = useNavigation();
     return (
       <>
           <Pressable
@@ -24,6 +26,15 @@ const LoginCards = (props) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   marginTop: height*0.03,
+              }}
+              onPress={() => {
+                if(props.isFunction){
+                    props.functionName().then(()=>{
+                        navigation.navigate(props.route);
+                    });
+                } else {
+                    navigation.navigate(props.route);
+                }
               }}
           >
             <View style={styles.logincard}>

@@ -2,8 +2,11 @@ import React from 'react'
 import { Button, Pressable, Text } from 'react-native';
 import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
+import { useNavigation } from '@react-navigation/native';
+
 
 const ButtonCustom = (props) => {
+    const navigator = useNavigation();
   return (
     <>
         {/* <Button
@@ -22,6 +25,13 @@ const ButtonCustom = (props) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 alignSelf: 'center',
+            }}
+            onPress={() => {
+                if(props.isFunction){
+                    props.functionName();
+                } else {
+                    navigator.navigate(props.route);
+                }
             }}
         >
             <Text style={{

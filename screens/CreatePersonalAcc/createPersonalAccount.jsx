@@ -4,6 +4,8 @@ import { Dimensions } from 'react-native'
 import ButtonCustom from '../../components/Button'
 import InputFields from '../../components/InputFields'
 const { width, height } = Dimensions.get('window')
+import LoginCards from '../../components/LoginCards'
+import { Web3AuthLogin } from '../../utils/auth/web3auth'
 
 
 const styles = StyleSheet.create({
@@ -73,8 +75,8 @@ const CreatePersonalAcc = () => {
             <View style={{
                 alignSelf: 'center',
             }}>
-                <LoginCards title="Continue with Google" />
-                <LoginCards title="Continue with MetaMass" />
+                <LoginCards title="Continue with Google" isFunction={true} functionName={Web3AuthLogin} route="Scanner"/>
+                <LoginCards title="Continue with MetaMask" />
             </View>
 
             <View style={{

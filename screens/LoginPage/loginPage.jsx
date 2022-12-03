@@ -61,7 +61,7 @@ const LoginPage = () => {
                 alignSelf: 'center',
             }}>
                 <LoginCards title="Continue with Google" />
-                <LoginCards title="Continue with MetaMass" />
+                <LoginCards title="Continue with MetaMask" />
             </View>
 
 

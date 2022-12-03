@@ -3,9 +3,13 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import ButtonCustom from "../../components/Button";
 import LandingText1 from "../../components/LandingText1";
-const { width, height } = Dimensions.get("window");
+// import { useNavigation } from "@react-navigation/native";
 
-const Dashboard = () => {
+
+const { width, height } = Dimensions.get("window");
+// const navigation = useNavigation();
+
+const Landing = () => {
   const [loaded] = useFonts({
     Montserrat: require("../../assets/fonts/landingfont.ttf"),
   });
@@ -65,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Dashboard;
+export default Landing;
