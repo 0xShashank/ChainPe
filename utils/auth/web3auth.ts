@@ -4,6 +4,7 @@ import RPC from "./ethersRPC";
 import Constants, { AppOwnership } from "expo-constants";
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
+import Web3 from "web3";
 
 import { Web3AuthModal, ClearWeb3Auth } from "./web3Provider";
 
@@ -62,7 +63,9 @@ export const Web3AuthLogin: any = async () => {
       redirectUrl: resolvedRedirectUrl,
       mfaLevel: "none",
     });
-    console.log(await RPC.getChainId());
+    const web3 = new Web3(Web3AuthModal.provider);
+    const address = (await web3.eth.getAccounts())[0];
+    
   } catch (e) {
     console.log(e);
   }

@@ -7,21 +7,20 @@ import "./shim.js";
 import { getBalance, sendPayment } from "./utils/auth/ethersRPC";
 import { changeChain } from "./redux/chainSlice";
 import { useEffect } from "react";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import { changeAndUpdateChain } from "./utils/changeChain";
+import { Provider } from "react-redux";
+import React from "react";
+
+import useChain from "./components/hooks/useChain";
+import Dashboard from "./pages/landing/landing";
 export default function App() {
   useEffect(() => {
     AsyncStorage.getItem("CHAIN_ID").then((chainId) => {
-      console.log(chainId);
-      AsyncStorage.setItem("CHAIN_ID", "BSC_TEST").then(() =>
-        changeChain("BSC_TEST")
-      );
+      console.log("chainId", chainId);
     });
   }, []);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <Dashboard />
   );
 }
 

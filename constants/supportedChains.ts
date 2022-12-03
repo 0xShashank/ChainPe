@@ -24,6 +24,6 @@ export const supportedChains = {
     contract: "",
   },
 };
-export const getChain = (chainId) => {
+export const getChain = (chainId: any) => {
   return supportedChains[chainId];
 };
