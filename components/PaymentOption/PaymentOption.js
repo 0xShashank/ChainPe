@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         backgroundColor: '#5b4275',
-        opacity: 0.3,
+        opacity: 0.7,
     },
     containerPressed: {
         display: 'flex',
