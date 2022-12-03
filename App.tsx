@@ -3,6 +3,9 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { login, logout } from 'utils/auth/web3auth';
 import React from 'react';
 import Dashboard from './pages/Dashboard/Dashboard';
+import Landing from './pages/landing/landing';
+import AuthPage from './pages/authpage/RegisterPage'
+import CreatePersonalAcc from './pages/CreatePersonalAcc/CreatePersonalAcc'
 
 export default function App() {
   
