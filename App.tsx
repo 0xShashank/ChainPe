@@ -20,7 +20,7 @@ import PaymentSecond from "./screens/Payment/paymentSecond";
 import SuccessScreen from "./screens/SuccessScreen/successScreen";
 import Scanner from "./screens/Scanner";
 import CreatePersonalAccount from "./screens/CreatePersonalAcc/createPersonalAccount";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Dashboard from "./screens/Dashboard/Dashboard";
 
 const Stack = createStackNavigator();
 

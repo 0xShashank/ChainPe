@@ -75,7 +75,7 @@ const CreatePersonalAccount = () => {
             <View style={{
                 alignSelf: 'center',
             }}>
-                <LoginCards title="Continue with Google" isFunction={true} functionName={Web3AuthLogin} route="Scanner"/>
+                <LoginCards title="Continue with Google" isFunction={true} functionName={Web3AuthLogin} route="Dashboard"/>
                 <LoginCards title="Continue with MetaMask" />
             </View>
 

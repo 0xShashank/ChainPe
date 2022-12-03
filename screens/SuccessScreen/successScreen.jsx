@@ -3,6 +3,7 @@ import React from 'react'
 import { Image, ScrollView, StyleSheet, View, Text } from 'react-native'
 import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
+import ButtonCustom from '../../components/Button';
 
 const styles = StyleSheet.create({
     container: {
@@ -99,6 +100,9 @@ const SuccessScreen = (props) => {
                     <Center style={styles.infoBox}>
                         <StatusInfo reciever={props.reciever} time={props.time} amount={props.amount} method={props.method}/>
                     </Center>
+                </View>
+                <View style={styles.button}>
+                    <ButtonCustom title="Done" route="Dashboard"/>
                 </View>
             </ScrollView>
         </NativeBaseProvider>

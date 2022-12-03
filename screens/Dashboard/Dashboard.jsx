@@ -2,6 +2,7 @@ import { HStack, NativeBaseProvider, VStack } from 'native-base';
 import React from 'react'
 import { View, Text, StyleSheet, Image, Dimensions, ScrollView, Pressable } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
 
 const {height, width} = Dimensions.get('window');
 const Tab = createBottomTabNavigator();
@@ -166,6 +167,7 @@ const bottomComponent = (props) => {
 
 
 const BottomNavBar = (props) => {
+    const navigation = useNavigation();
     return(
         <>
             <View style={{
@@ -191,7 +193,9 @@ const BottomNavBar = (props) => {
                         <View><Text style={styles.genText}>Crypto</Text></View>
                     </View>
                     <View style={{alignItems: 'center' }}>
-                        <Pressable onPress={()=> console.log("pressed")}>
+                        <Pressable onPress={()=> {
+                            navigation.navigate('Scanner');
+                        }}>
                             <View style={{alignSelf:'center'}}><Image source={require('../../assets/scan.png')} /></View>
                             <View><Text style={styles.genText}>Scan</Text></View>
                         </Pressable>
