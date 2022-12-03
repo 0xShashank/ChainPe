@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button, Pressable, Text } from 'react-native';
+import { Dimensions } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 const ButtonCustom = (props) => {
   return (
@@ -14,11 +16,12 @@ const ButtonCustom = (props) => {
         <Pressable
             style={{
                 backgroundColor: '#6100ff',
-                width: 364,
+                width: width*0.9,
                 height: 60,
                 borderRadius: 10,
                 justifyContent: 'center',
                 alignItems: 'center',
+                alignSelf: 'center',
             }}
         >
             <Text style={{

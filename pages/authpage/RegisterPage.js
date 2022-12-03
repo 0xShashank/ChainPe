@@ -1,8 +1,9 @@
 import React from 'react'
-import { ScrollView, StyleSheet, View, Text } from 'react-native';
+import { ScrollView, StyleSheet, View, Text, Image } from 'react-native';
 import ButtonCustom from '../../components/Button';
 import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
+import { NativeBaseProvider, Center, HStack, VStack } from "native-base";
 
 const styles = StyleSheet.create({
     container: {
@@ -25,33 +26,56 @@ const styles = StyleSheet.create({
         marginLeft:width*0.034,
     },
     button:{
-        // marginTop: 20,
-        marginLeft: width*0.034,
+        marginTop: 20,
     },
+    maincard:{
+        backgroundColor: '#5b4275',
+        opacity: 0.8,
+        width: width*0.9,
+        height: height*0.1,
+        alignSelf: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+        borderRadius: 20,
+        marginTop: height*0.03,
+    }
 });
 
-// const Authcard = (props) => {
-//     return (
-//       <>
-//           <View>
-//               {/* <View> // horizontal */}
-//                 <View>   </View>
-//                   <View> // vertical
-//                         <View>
-//                             <Text>
-//                                 Hello
-//                             </Text>
-//                         </View>
-//                         <View>
-//                             <Text>
-//                                 Hii
-//                             </Text>
-//                         </View>
-//                   </View>
-//           </View>
-//       </>
-//     )
-//   }
+const Authcard = (props) => {
+    return (
+        <>
+        <View style={styles.maincard}>
+            <View style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly'}}>
+                <View>
+                    <Image source={props.image} alt="image" />
+                </View>
+                <View style={{
+                    display:'flex',
+                    flexDirection:'column',
+                }}>
+                    <View>
+                        <Text style={{
+                        color: '#ffffff',
+                        fontSize: 20,
+                        fontFamily: 'Montserrat',
+                        fontWeight: '900',
+                    }}>
+                        {props.text}
+                    </Text>
+                    </View>
+                    <View>
+                        <Text style={{
+                            alignSelf:'flex-start',
+                            fontSize: 12,
+                            color: '#868686',
+                        }}>{props.subtext}</Text>
+                    </View>
+                </View>
+            </View>
+        </View>
+        </>
+    );
+  }
 
 const AuthPage = () => {
   return (
@@ -63,6 +87,7 @@ const AuthPage = () => {
                     color: '#ffffff',
                     fontSize: 32,
                     fontFamily: 'Montserrat',
+                    alignSelf: 'flex-start',
                 }}>
                     Welcome to
                 </Text>
@@ -85,10 +110,11 @@ const AuthPage = () => {
                     Choose the type of account you want to open in ChainPe
                 </Text>
             </View>
-
-            {/* Component Cards for method of payments */}
-
-            {/* Component Cards for method of payments */}
+            
+            <View>
+            <Authcard image={require('../../assets/createAcc.png')} text="Create your Personal Account" subtext="Create your personal binance Account" />
+            <Authcard image={require('../../assets/userAcc.png')} text="Sign up for an Entity Account" subtext="Open a Binance account for business" />
+            </View>
 
             <View style={styles.button}>
                 <ButtonCustom title="Continue"/>
