@@ -52,7 +52,7 @@ const LOGIN_PROVIDER = {
 
 const web3auth = new Web3Auth(WebBrowser, {
   clientId,
-  network: OPENLOGIN_NETWORK.TESTNET, // or other networks
+  network: "testnet", // or other networks
 });
 
 export const Web3AuthLogin: any = async () => {
@@ -61,7 +61,6 @@ export const Web3AuthLogin: any = async () => {
       loginProvider: LOGIN_PROVIDER.GOOGLE,
       redirectUrl: resolvedRedirectUrl,
       mfaLevel: "none",
-      curve: "secp256k1",
     });
     console.log(await RPC.getChainId());
   } catch (e) {
