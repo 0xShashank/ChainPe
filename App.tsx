@@ -1,34 +1,59 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { login, logout } from 'utils/auth/web3auth';
+import { Row } from 'native-base';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { NativeBaseProvider, Box } from "native-base";
+//import PreviousTransac from "./pages/dashboard/previoustransac";
+
 
 export default function App() {
-
-  // const loggedInView = (
-  //   <View style={styles.buttonArea}>
-  //     <Button title="Get User Info" onPress={() => uiConsole(userInfo)} />
-  //     <Button title="Get Chain ID" onPress={() => getChainId()} />
-  //     <Button title="Get Accounts" onPress={() => getAccounts()} />
-  //     <Button title="Get Balance" onPress={() => getBalance()} />
-  //     <Button title="Send Transaction" onPress={() => sendTransaction()} />
-  //     <Button title="Sign Message" onPress={() => signMessage()} />
-  //     <Button title="Get Private Key" onPress={() => uiConsole(key)} />
-  //     <Button title="Log Out" onPress={() => setKey('')} />
-  //   </View>
-  // );
-
-  // const unloggedInView = (
-  //   <View style={styles.buttonArea}>
-  //     <Button title="Login with Web3Auth" onPress={login} />
-  //   </View>
-  // );
-
   return (
-      <View style={styles.buttonArea}>
-        <Button title="Login with Web3Auth" onPress={login} />
+    <NativeBaseProvider>
+           <View style={styles.container}>
+        <View style={styles.first_box}>
+          <Image
+            style={styles.tinyLogo}
+            source={require('./assets/dash_logo.svg')}
+            />
+          <View style={styles.text}>
+            <Text>Hello Lisa</Text>
+            <Text>Welcome Back</Text>
+          </View>
+          <Image
+            style={styles.tinyLogo}
+            source={require('./assets/bell.svg')}
+            />
+        </View>
+        <Box style={styles.second_box} bg={{
+            linearGradient: {
+              colors: ['lightBlue.300', 'violet.800'],
+              start: [0, 0],
+              end: [1, 0]
+            }
+          }} p="12" rounded="xl" _text={{
+            fontSize: 'md',
+            fontWeight: 'medium',
+            color: 'warmGray.50',
+            textAlign: 'center'
+          }}>
+            <View>
+              <Text>Lisa</Text>
+              <Text>Drop-down</Text>
+            </View>
+            <View>
+              <Text>Wallet</Text>
+              <Text>Hide icon</Text>
+            </View>
+        </Box>
+        <View>
+          <Text>Transaction History</Text>
+        </View>
+        {/* < PreviousTransc /> */}
+      <Box>Hello world</Box>
       </View>
+    </NativeBaseProvider>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -37,4 +62,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  tinyLogo: {
+    width: 50,
+    height: 50,
+  },
+  first_box: {
+    flexDirection: 'row',
+  },
+  second_box: {
+    
+  },
+  text: {
+
+  }
 });
