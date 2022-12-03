@@ -1,16 +1,15 @@
 import "@ethersproject/shims";
 import { ethers } from "ethers";
-// import { getChain } from "../../constants/supportedChains";
+import { getChain } from "../../constants/supportedChains";
 import { AsyncStorage } from "react-native";
 const getChainFromID: any = async () => {
-  // AsyncStorage.getItem("CHAIN_ID").then((chainId) => {
-  //   return getChain(chainId);
-  // });
+  let cid = await AsyncStorage.getItem("CHAIN_ID");
+  return getChain(cid);
 };
 
 const getChainId = async () => {
-  const CHAIN = await getChainFromID();
   try {
+    const CHAIN = await getChainFromID();
     const ethersProvider = ethers.getDefaultProvider(CHAIN.providerUrl);
     const networkDetails = await ethersProvider.getNetwork();
     return networkDetails;
