@@ -1,6 +1,7 @@
 import React from 'react'
 import { Center, HStack } from 'native-base'
 import { Image, Text, StyleSheet, View, Pressable } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 const styles = StyleSheet.create({
     container: {
@@ -34,10 +35,14 @@ const styles = StyleSheet.create({
 
 
 const PaymentOption = (props) => {
+    const navigation = useNavigation();
     var [ isPress, setIsPress ] = React.useState(false);
   return (
     <>
-        <Pressable style={styles.hstack} onPress={() => {console.log("pressed"); setIsPress(true)}}>
+        <Pressable style={styles.hstack} onPress={() => {
+                navigation.navigate('PaymentFirst');
+                setIsPress(true)
+            }}>
             <Center w="90%" h="20" ml="0" rounded="19" shadow={3} style={!isPress? styles.container : styles.containerPressed}>
                     <Image source={props.image} />
                     <Text style={styles.text}>{props.text}</Text>

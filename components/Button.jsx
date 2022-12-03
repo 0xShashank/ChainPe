@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const ButtonCustom = (props) => {
-    const navigator = useNavigation();
+    const navigation = useNavigation();
   return (
     <>
         {/* <Button
@@ -28,11 +28,13 @@ const ButtonCustom = (props) => {
             }}
             onPress={() => {
                 if(props.isFunction){
-                    props.functionName();
+                    props.functionName().then(()=>{
+                        navigation.navigate(props.route);
+                    });
                 } else {
-                    navigator.navigate(props.route);
+                    navigation.navigate(props.route);
                 }
-            }}
+              }}
         >
             <Text style={{
                 color: '#ffffff',

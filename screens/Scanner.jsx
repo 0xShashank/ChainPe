@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Scanner() {
-    const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+    const navigation = useNavigation();
+    const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
   
     useEffect(() => {
@@ -13,9 +15,15 @@ export default function Scanner() {
       })();
     }, []);
   
-    const handleBarCodeScanned = ({ type, data } : {type : any, data : any}) => {
+    const handleBarCodeScanned = ({ type, data }) => {
       setScanned(true);
-      alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+      if(data.startsWith('upi://', 0)){
+        setScanned(false);
+        // Function
+        navigation.navigate('PaymentFirst');
+      } else {
+        alert('Please scan a valid UPI QR code');
+      }
     };
   
     if (hasPermission === null) {

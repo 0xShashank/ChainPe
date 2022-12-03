@@ -2,6 +2,7 @@ import React from 'react'
 import { ScrollView, Image, StyleSheet, Text, View } from 'react-native'
 import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
+import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
     container: {
@@ -16,6 +17,9 @@ const styles = StyleSheet.create({
 });
 
 const LoadingScreen = () => {
+    const navigation = useNavigation();
+
+    // navigation.navigate('SuccessScreen');
   return (
     <>
         <ScrollView style={styles.container}>

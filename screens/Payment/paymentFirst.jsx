@@ -3,6 +3,8 @@ import { Center, NativeBaseProvider, NumberInput, ScrollView, View, VStack } fro
 import { Image, TextInput } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import PaymentOption from '../../components/PaymentOption/PaymentOption';
+import { useNavigation } from '@react-navigation/native';
+import ButtonCustom from '../../components/Button';
 
 const styles = StyleSheet.create({
     container: {
@@ -59,9 +61,10 @@ const styles = StyleSheet.create({
 });
 
 const CurrencyCard = (props) => {
+    const navigation = useNavigation();
     return (
         <>
-        <Pressable style={styles.hstack} onPress={() => console.log("pressed")}>
+        <Pressable style={styles.hstack} onPress={() => navigation.navigate('PaymentSecond')}>
             <Center w="90%" h="20" rounded="19" shadow={3} style={styles.container2}>
                 <View style={styles.name}>
                     <Image source={props.logo} />
@@ -91,7 +94,7 @@ const MoneyCard = (props) => {
     );
 }
 
-const Payment1 = () => {
+const PaymentFirst = () => {
   return (
     <>
         <NativeBaseProvider>
@@ -131,7 +134,9 @@ const Payment1 = () => {
                     <View style={styles.cards}>
                     <MoneyCard amount="500" netValue="500"/>
                     </View>
-
+                    <View style={styles.button}>
+                        <ButtonCustom title="Make Transaction" route="LoadingScreen"/>
+                    </View>
 
                 </VStack>
             </ScrollView>
@@ -140,4 +145,4 @@ const Payment1 = () => {
   )
 }
 
-export default Payment1
+export default PaymentFirst

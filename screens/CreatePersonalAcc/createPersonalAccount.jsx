@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     },
 })
 
-const CreatePersonalAcc = () => {
+const CreatePersonalAccount = () => {
   return (
     <>
         <ScrollView style={styles.container}>
@@ -96,4 +96,4 @@ const CreatePersonalAcc = () => {
   )
 }
 
-export default CreatePersonalAcc
+export default CreatePersonalAccount

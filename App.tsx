@@ -12,14 +12,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import AuthPage from "./screens/AuthPage/registerPage";
-import CreatePersonalAcc from "./screens/CreatePersonalAcc/createPersonalAccount";
 import Landing from "./screens/Landing/landing";
 import LoadingScreen from "./screens/LoadingScreen/loadingScreen";
 import LoginPage from "./screens/LoginPage/loginPage";
-import Payment1 from "./screens/Payment/paymentFirst";
-import Payment2 from "./screens/Payment/paymentSecond";
+import PaymentFirst from "./screens/Payment/paymentFirst";
+import PaymentSecond from "./screens/Payment/paymentSecond";
 import SuccessScreen from "./screens/SuccessScreen/successScreen";
 import Scanner from "./screens/Scanner";
+import CreatePersonalAccount from "./screens/CreatePersonalAcc/createPersonalAccount";
 
 const Stack = createStackNavigator();
 
@@ -36,12 +36,12 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="AuthPage" component={AuthPage} options={{ headerShown: false }} />
-        <Stack.Screen name="CreatePersonalAcc" component={CreatePersonalAcc} options={{ headerShown: false }} />
+        <Stack.Screen name="CreatePersonalAccount" component={CreatePersonalAccount} options={{ headerShown: false }} />
         <Stack.Screen name="Landing" component={Landing} options={{ headerShown: false }} />
         <Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />
         <Stack.Screen name="LoginPage" component={LoginPage} options={{ headerShown: false }} />
-        <Stack.Screen name="Payment1" component={Payment1} options={{ headerShown: false }} />
-        <Stack.Screen name="Payment2" component={Payment2} options={{ headerShown: false }} />
+        <Stack.Screen name="PaymentFirst" component={PaymentFirst} options={{ headerShown: false }} />
+        <Stack.Screen name="PaymentSecond" component={PaymentSecond} options={{ headerShown: false }} />
         <Stack.Screen name="SuccessScreen" component={SuccessScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Scanner" component={Scanner} options={{ headerShown: false }} />
       </Stack.Navigator>

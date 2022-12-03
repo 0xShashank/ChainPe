@@ -4,7 +4,7 @@ import ButtonCustom from '../../components/Button';
 import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 import { NativeBaseProvider, Center, HStack, VStack } from "native-base";
-// import CreatePersonalAcc from '../CreatePersonalAcc/CreatePersonalAcc';
+// import CreatePersonalAccount from '../CreatePersonalAccount/CreatePersonalAccount';
 // import { useNavigation } from '@react-navigation/native';
 
 // const navigation = useNavigation();
@@ -121,7 +121,7 @@ const AuthPage = () => {
             </View>
 
             <View style={styles.button}>
-                <ButtonCustom title="Continue" route="CreatePersonalAcc"/>
+                <ButtonCustom title="Continue" route="CreatePersonalAccount"/>
             </View>
 
         </ScrollView>
