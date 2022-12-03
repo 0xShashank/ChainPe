@@ -23,6 +23,7 @@
     "@web3auth/web3auth-wagmi-connector": "^1.0.0",
     "assert": "^1.5.0",
     "axios": "^1.2.0",
+    "base-64": "^1.0.0",
     "browserify-zlib": "^0.1.4",
     "buffer": "^4.9.2",
     "console-browserify": "^1.2.0",
