@@ -9,6 +9,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+boilerplate.js
 
 # macOS
 .DS_Store
