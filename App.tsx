@@ -5,7 +5,7 @@ import { Web3AuthLogin } from "./utils/auth/web3auth";
 import { Web3AuthModal } from "./utils/auth/web3Provider";
 import "./shim.js";
 import { getBalance, sendPayment } from "./utils/auth/ethersRPC";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -20,6 +20,7 @@ import PaymentSecond from "./screens/Payment/paymentSecond";
 import SuccessScreen from "./screens/SuccessScreen/successScreen";
 import Scanner from "./screens/Scanner";
 import CreatePersonalAccount from "./screens/CreatePersonalAcc/createPersonalAccount";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,7 @@ export default function App() {
         <Stack.Screen name="PaymentSecond" component={PaymentSecond} options={{ headerShown: false }} />
         <Stack.Screen name="SuccessScreen" component={SuccessScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Scanner" component={Scanner} options={{ headerShown: false }} />
+        <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
