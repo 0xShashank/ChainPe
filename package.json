@@ -7,12 +7,13 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "postinstall":"./node_modules/.bin/rn-nodeify --hack --install"
+    "postinstall": "./node_modules/.bin/rn-nodeify --hack --install"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.16",
     "@react-navigation/stack": "^6.3.7",
     "@ethersproject/shims": "^5.7.0",
+    "@reduxjs/toolkit": "^1.9.1",
     "@tradle/react-native-http": "^2.0.1",
     "@web3auth/base": "^3.2.0",
     "@web3auth/metamask-adapter": "^3.2.0",
@@ -55,7 +56,9 @@
     "react-native-randombytes": "^3.6.1",
     "react-native-tcp": "^3.3.2",
     "react-native-udp": "^2.7.0",
+    "react-redux": "^8.0.5",
     "readable-stream": "^1.0.33",
+    "redux": "^4.2.0",
     "stream-browserify": "^1.0.0",
     "string_decoder": "^0.10.31",
     "timers-browserify": "^1.4.2",
