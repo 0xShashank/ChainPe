@@ -3,11 +3,8 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import ButtonCustom from "../../components/Button";
 import LandingText1 from "../../components/LandingText1";
-// import { useNavigation } from "@react-navigation/native";
-
 
 const { width, height } = Dimensions.get("window");
-// const navigation = useNavigation();
 
 const Landing = () => {
   const [loaded] = useFonts({
