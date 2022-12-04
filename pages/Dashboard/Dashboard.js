@@ -2,6 +2,8 @@ import { HStack, NativeBaseProvider, VStack } from 'native-base';
 import React from 'react'
 import { View, Text, StyleSheet, Image, Dimensions, ScrollView, Pressable } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import CoinShow from '../../components/CoinShow';
+import ChainShow from '../../components/ChainShow';
 
 const {height, width} = Dimensions.get('window');
 const Tab = createBottomTabNavigator();
@@ -71,7 +73,7 @@ const PersonalInfo = (props) => {
     );
 }
 
-const AccountCard = (props) => {
+const BasicView = (props) => {
     return (
         <>
             <View style={styles.accountCard}>
@@ -90,7 +92,9 @@ const AccountCard = (props) => {
                             }}>{props.username}</Text>
                         </View>
                         <View>
-                            <Pressable onPress={() => console.log('pressed')}>
+                            <Pressable onPress={() => {
+                                props.setisopen(true);
+                            }}>
                                 <Image source={require('../../assets/dropdown.png')}/>
                             </Pressable>
                         </View>
@@ -108,6 +112,27 @@ const AccountCard = (props) => {
                         }}>${props.balance}</Text></View>
                     </View>
             </View>
+        </>
+    );
+}
+
+const AccountCard = (props) => {
+    const [isopen, setisopen] = React.useState(false);
+    const [iscoinopen, setiscoinopen] = React.useState(false);
+    return (
+        <>
+            {!isopen?
+                <BasicView username={props.username} balance={props.balance} setisopen={setisopen} setiscoinopen={setiscoinopen}/>
+                :
+                <>
+                    {
+                        iscoinopen ?
+                        <CoinShow username={props.username} network="Ethereum Mainnet" balance={props.balance} setisopen={setisopen} setiscoinopen={setiscoinopen}/>
+                        :
+                        <ChainShow username={props.username} network="Ethereum Mainnet" balance={props.balance} setisopen={setisopen} setiscoinopen={setiscoinopen}/>
+                    }
+                </>
+            }
         </>
     );
 }

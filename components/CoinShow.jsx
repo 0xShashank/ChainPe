@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
 })
 
-const Chain = (props) => {
+const Coin = (props) => {
     return (
         <>
             <View style={styles.chain}>
@@ -55,6 +55,7 @@ const Chain = (props) => {
 
 
 const CoinShow = (props) => {
+    const [flag, setflag] = React.useState(0);
   return (
     <>
     <View style={styles.accountCard}>
@@ -75,7 +76,7 @@ const CoinShow = (props) => {
                 </View>
 
                 <View>
-                    <Pressable onPress={() => console.log('pressed')}>
+                    <Pressable onPress={() => {props.setisopen(false)}}>
                         <Image source={require('../assets/dropdown.png')}/>
                     </Pressable>
                 </View>
@@ -99,7 +100,9 @@ const CoinShow = (props) => {
             </View>
 
             <View>
-                <Pressable onPress={() => console.log("hehehehe")}>
+                <Pressable onPress={() => {
+                    props.setiscoinopen(false);
+                }}>
                     <Text style={{
                         color: '#ffffff',
                         fontSize: 15,
@@ -112,13 +115,11 @@ const CoinShow = (props) => {
                     }}>{props.network}</Text>
                 </Pressable>
             </View>
-            
-            <Chain img={require('../assets/bitcoin.png')} name="Bitcoin" value="200000"/>
-            <Chain img={require('../assets/tether.png')} name="Tether" value="200000"/>
-            <Chain img={require('../assets/USD.png')} name="USD" value="200000"/>
-            {/* <Chain img={require('../assets/bitcoin.png')} name="Bitcoin" value="200000"/>
-            <Chain img={require('../assets/bitcoin.png')} name="Bitcoin" value="200000"/>
-            <Chain img={require('../assets/bitcoin.png')} name="Bitcoin" value="200000"/> */}
+        
+            <Coin img={require('../assets/bitcoin.png')} name="Bitcoin" value="200000"/>
+            <Coin img={require('../assets/tether.png')} name="Tether" value="200000"/>
+            <Coin img={require('../assets/USD.png')} name="USD" value="200000"/>
+        
 
     </View>
 </>

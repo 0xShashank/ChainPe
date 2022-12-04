@@ -72,7 +72,9 @@ const ChainShow = (props) => {
                 </View>
 
                 <View>
-                    <Pressable onPress={() => console.log('pressed')}>
+                    <Pressable onPress={() => {
+                        props.setisopen(false);
+                    }}>
                         <Image source={require('../assets/dropdown.png')}/>
                     </Pressable>
                 </View>
@@ -96,16 +98,20 @@ const ChainShow = (props) => {
             </View>
 
             <View>
-                <Text style={{
-                    color: '#ffffff',
-                    fontSize: 15,
-                    paddingLeft: width*0.05
-                }}>Current network</Text>
-                <Text style={{
-                    color: '#ffffff',
-                    fontSize: 25,
-                    paddingLeft: width*0.05
-                }}>{props.network}</Text>
+            <Pressable onPress={() => {
+                    props.setiscoinopen(1);
+                }}>
+                    <Text style={{
+                        color: '#ffffff',
+                        fontSize: 15,
+                        paddingLeft: width*0.05
+                    }}>Current network</Text>
+                    <Text style={{
+                        color: '#ffffff',
+                        fontSize: 25,
+                        paddingLeft: width*0.05
+                    }}>{props.network}</Text>
+                </Pressable>
             </View>
             
             <Chain img={require('../assets/bitcoin.png')} name="Ethereum Mainnet" value="200000"/>
