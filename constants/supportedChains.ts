@@ -31,7 +31,7 @@ export const supportedChains = {
     chainId: 123,
     chainName: "Fuse Testnet",
     providerUrl: "https://rpc.fusespark.io",
-    contract: "0x933F59911797De70d5A0c5f79149a503DdeF5744",
+    contract: "0x5CA6ba1Ec356Dd2832eBDa811Eae46c3DFB78611",
     image: require("../assets/bitcoin.png"),
   },
   FUSE: {

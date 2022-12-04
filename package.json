@@ -12,6 +12,7 @@
   "dependencies": {
     "@ethersproject/shims": "^5.7.0",
     "@hookstate/core": "^4.0.0-rc21",
+    "@lifi/sdk": "^1.7.0",
     "@pushprotocol/restapi": "^0.2.2",
     "@react-navigation/bottom-tabs": "^6.4.3",
     "@react-navigation/material-bottom-tabs": "^6.2.7",
