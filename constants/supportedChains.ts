@@ -4,6 +4,8 @@ export const supportedChains = {
     chainName: "Ethereum Mainnet",
     providerUrl: "https://rpc.ankr.com/eth",
     contract: "0x74Ba11c7a2D266b8e61AD65073D29C9eF8996b5b",
+    image: require("../assets/bitcoin.png"),
+    native: "ETH",
     coins: {
       ETH: {
         name: "Ethereum",
@@ -30,12 +32,15 @@ export const supportedChains = {
     chainName: "Fuse Testnet",
     providerUrl: "https://rpc.fusespark.io",
     contract: "0x933F59911797De70d5A0c5f79149a503DdeF5744",
+    image: require("../assets/bitcoin.png"),
   },
   FUSE: {
     chainId: 122,
     chainName: "Fuse Mainnet",
     providerUrl: "https://rpc.fuse.io",
     contract: "0x8498d0962454C22406f41BFc9665724E5f527a93",
+    image: require("../assets/bitcoin.png"),
+    native: "FUSE",
     coins: {
       FUSE: {
         name: "Fuse",
@@ -61,7 +66,9 @@ export const supportedChains = {
     chainId: 100,
     chainName: "Gnosis Mainnet",
     providerUrl: "https://safe-transaction.gnosis.io",
+    image: require("../assets/bitcoin.png"),
     contract: "",
+    native: "xDai",
     coins: {
       xDai: {
         name: "xDai",
@@ -94,38 +101,15 @@ export const supportedChains = {
     chainId: 97,
     chainName: "Binance Testnet",
     contract: "0xc0E1565b83d175b647DfFB81902554224375C4b8",
-  },
-  BSC: {
-    providerUrl: "https://bsc-dataseed.binance.org/",
-    chainId: 56,
-    chainName: "Binance Mainnet",
-    contract: "",
-    coins: {
-      BNB: {
-        name: "Binance Coin",
-        symbol: "BNB",
-        decimals: 18,
-        address: "0x0000000000000000000000000000000000000000",
-      },
-      USDT: {
-        name: "Tether USD",
-        symbol: "USDT",
-        decimals: 6,
-        address: "0x55d398326f99059ff775485246999027b3197955",
-      },
-      USDC: {
-        name: "USD Coin",
-        symbol: "USDC",
-        decimals: 6,
-        address: "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
-      },
-    },
+    image: require("../assets/bitcoin.png"),
   },
   POLYGON: {
     providerUrl: "https://rpc-mainnet.maticvigil.com",
     chainId: 137,
     chainName: "Polygon Mainnet",
+    image: require("../assets/bitcoin.png"),
     contract: "",
+    native: "MATIC",
     coins: {
       MATIC: {
         name: "Matic",

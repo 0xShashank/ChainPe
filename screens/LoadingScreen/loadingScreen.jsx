@@ -7,6 +7,7 @@ import { useHookstate } from "@hookstate/core";
 import { paymentState } from "../../redux/paymentSlice/index";
 import { sendPayment } from "../../utils/auth/ethersRPC";
 import { addressState } from "../../redux/addressSlice";
+import { chainState } from "../../redux";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,13 +25,15 @@ const LoadingScreen = () => {
   const navigation = useNavigation();
   const payment = useHookstate(paymentState);
   const address = useHookstate(addressState);
+  const chain = useHookstate(chainState);
   useEffect(() => {
     console.log(payment.get());
     sendPayment(
       payment.get().vpa,
       payment.get().name,
       payment.get().amount,
-      "20000"
+      "20000",
+      chain.get()
     ).then((res) => {
       navigation.navigate("SuccessScreen");
     });

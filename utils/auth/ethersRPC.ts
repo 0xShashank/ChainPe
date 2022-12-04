@@ -2,12 +2,11 @@ import "@ethersproject/shims";
 import { ethers } from "ethers";
 import { getChain } from "../../constants/supportedChains";
 import { AsyncStorage } from "react-native";
-import ChainPeABI from "../../contracts/ChainPe.json";
+import { ChaonPayABI } from "../../contracts/ChainPe";
 import { ChainPe } from "../../contracts/types/ChainPe";
 import { Web3AuthModal } from "./web3Provider";
-const getChainFromID: any = async () => {
-  let cid = await AsyncStorage.getItem("CHAIN_ID");
-  return getChain(cid);
+const getChainFromID: any = async (chain: any) => {
+  return getChain(chain);
 };
 
 const getChainId = async () => {
@@ -100,37 +99,42 @@ export const sendPayment = async (
   vpa: string,
   name: string,
   amount: string,
-  rate: string
+  rate: string,
+  chain: string
 ) => {
   return new Promise(async (resolve, reject) => {
-    const CHAIN = await getChainFromID();
-    const ethersProvider = ethers.getDefaultProvider(CHAIN.providerUrl);
-    const wallet = new ethers.Wallet(
-      Web3AuthModal.provider.privKey,
-      ethersProvider
-    );
+    try {
+      const CHAIN = await getChainFromID(chain);
+      console.log(CHAIN);
+      const ethersProvider = ethers.getDefaultProvider(CHAIN.providerUrl);
+      const wallet = new ethers.Wallet(
+        Web3AuthModal.provider.privKey,
+        ethersProvider
+      );
 
-    const contract = new ethers.Contract(
-      CHAIN.contract,
-      ChainPeABI.abi,
-      wallet
-    ) as ChainPe;
+      const contract = new ethers.Contract(
+        CHAIN.contract,
+        ChaonPayABI.abi,
+        wallet
+      ) as ChainPe;
 
-    console.log(wallet.address);
-
-    const tx = await contract.pay(
-      vpa,
-      name,
-      ethers.utils.parseEther(amount),
-      ethers.utils.parseEther(rate),
-      {
-        value: ethers.utils.parseEther(
-          (parseInt(amount) / parseInt(rate)).toString()
-        ),
-      }
-    );
-    await tx.wait();
-    console.log("Transaction sent");
-    resolve(tx.hash);
+      console.log(wallet.address);
+      const tx = await contract.pay(
+        vpa,
+        name,
+        ethers.utils.parseEther(amount),
+        ethers.utils.parseEther(rate),
+        {
+          value: ethers.utils.parseEther(
+            (parseInt(amount) / parseInt(rate)).toString()
+          ),
+        }
+      );
+      await tx.wait();
+      console.log("Transaction sent");
+      resolve(tx.hash);
+    } catch (err) {
+      console.log(err);
+    }
   });
 };

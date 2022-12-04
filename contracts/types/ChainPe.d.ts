@@ -55,7 +55,7 @@ interface ChainPeInterface extends ethers.utils.Interface {
 
   events: {
     "OwnershipTransferred(address,address)": EventFragment;
-    "PaymentCompleted(string,string,uint256,uint256)": EventFragment;
+    "PaymentCompleted(string,string,uint256,uint256,address)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
@@ -67,11 +67,12 @@ export type OwnershipTransferredEvent = TypedEvent<
 >;
 
 export type PaymentCompletedEvent = TypedEvent<
-  [string, string, BigNumber, BigNumber] & {
+  [string, string, BigNumber, BigNumber, string] & {
     name: string;
     vpa: string;
     amount: BigNumber;
     rate: BigNumber;
+    sender: string;
   }
 >;
 
@@ -194,24 +195,38 @@ export class ChainPe extends BaseContract {
       { previousOwner: string; newOwner: string }
     >;
 
-    "PaymentCompleted(string,string,uint256,uint256)"(
+    "PaymentCompleted(string,string,uint256,uint256,address)"(
       name?: null,
       vpa?: null,
       amount?: null,
-      rate?: null
+      rate?: null,
+      sender?: null
     ): TypedEventFilter<
-      [string, string, BigNumber, BigNumber],
-      { name: string; vpa: string; amount: BigNumber; rate: BigNumber }
+      [string, string, BigNumber, BigNumber, string],
+      {
+        name: string;
+        vpa: string;
+        amount: BigNumber;
+        rate: BigNumber;
+        sender: string;
+      }
     >;
 
     PaymentCompleted(
       name?: null,
       vpa?: null,
       amount?: null,
-      rate?: null
+      rate?: null,
+      sender?: null
     ): TypedEventFilter<
-      [string, string, BigNumber, BigNumber],
-      { name: string; vpa: string; amount: BigNumber; rate: BigNumber }
+      [string, string, BigNumber, BigNumber, string],
+      {
+        name: string;
+        vpa: string;
+        amount: BigNumber;
+        rate: BigNumber;
+        sender: string;
+      }
     >;
   };
 

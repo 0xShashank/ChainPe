@@ -20,7 +20,9 @@ import { getAccount } from "../../utils/auth/ethersRPC";
 const { height, width } = Dimensions.get("window");
 import { fetchTokens } from "../../utils/fetchTokens";
 import Web3 from "web3";
-import { getChain } from "../../constants/supportedChains";
+import { getChain, supportedChains } from "../../constants/supportedChains";
+import CoinShow from "../../components/CoinShow";
+import ChainShow from "../../components/ChainShow";
 const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
@@ -55,6 +57,74 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 });
+
+const BasicView = (props) => {
+  return (
+    <>
+      <View style={styles.accountCard}>
+        <View
+          style={{
+            paddingTop: height * 0.035,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingRight: width * 0.08,
+          }}
+        >
+          <View>
+            <Text
+              style={{
+                color: "#ffffff",
+                fontSize: 22,
+                paddingLeft: width * 0.05,
+              }}
+            >
+              {props.username}
+            </Text>
+          </View>
+          <Pressable
+            onPress={() => {
+              props.setisopen(true);
+            }}
+          >
+            <View
+              style={{
+                width: 30,
+                height: 30,
+              }}
+            >
+              <Image source={require("../../assets/dropdown.png")} />
+            </View>
+          </Pressable>
+        </View>
+        <View>
+          <View>
+            <Text
+              style={{
+                color: "#C7C7C7",
+                paddingLeft: width * 0.05,
+              }}
+            >
+              Wallet
+            </Text>
+          </View>
+          <View>
+            <Text
+              style={{
+                color: "#ffffff",
+                fontSize: 22,
+                paddingLeft: width * 0.05,
+                paddingBottom: height * 0.035,
+              }}
+            >
+              ${props.balance}
+            </Text>
+          </View>
+        </View>
+      </View>
+    </>
+  );
+};
 
 const PersonalInfo = (props) => {
   return (
@@ -100,62 +170,42 @@ const PersonalInfo = (props) => {
     </>
   );
 };
-
 const AccountCard = (props) => {
+  const [isopen, setisopen] = React.useState(false);
+  const [iscoinopen, setiscoinopen] = React.useState(false);
+  const chain = useHookstate(chainState);
   return (
     <>
-      <View style={styles.accountCard}>
-        <View
-          style={{
-            paddingTop: height * 0.035,
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            paddingRight: width * 0.08,
-          }}
-        >
-          <View>
-            <Text
-              style={{
-                color: "#ffffff",
-                fontSize: 22,
-                paddingLeft: width * 0.05,
-              }}
-            >
-              {props.username}
-            </Text>
-          </View>
-          <View>
-            <Pressable onPress={() => console.log("pressed")}>
-              <Image source={require("../../assets/dropdown.png")} />
-            </Pressable>
-          </View>
-        </View>
-        <View>
-          <View>
-            <Text
-              style={{
-                color: "#C7C7C7",
-                paddingLeft: width * 0.05,
-              }}
-            >
-              Wallet
-            </Text>
-          </View>
-          <View>
-            <Text
-              style={{
-                color: "#ffffff",
-                fontSize: 22,
-                paddingLeft: width * 0.05,
-                paddingBottom: height * 0.035,
-              }}
-            >
-              ${props.balance}
-            </Text>
-          </View>
-        </View>
-      </View>
+      {!isopen ? (
+        <BasicView
+          username={props.username}
+          balance={props.balance}
+          setisopen={setisopen}
+          setiscoinopen={setiscoinopen}
+        />
+      ) : (
+        <>
+          {iscoinopen ? (
+            <CoinShow
+              username={props.username}
+              network={getChain(chain.get()).chainName}
+              balance={props.balance}
+              setisopen={setisopen}
+              setiscoinopen={setiscoinopen}
+              chains={supportedChains}
+            />
+          ) : (
+            <ChainShow
+              username={props.username}
+              network={getChain(chain.get()).chainName}
+              balance={props.balance}
+              setisopen={setisopen}
+              setiscoinopen={setiscoinopen}
+              chains={supportedChains}
+            />
+          )}
+        </>
+      )}
     </>
   );
 };

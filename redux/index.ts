@@ -16,5 +16,5 @@
 // export default store;
 import { hookstate, useHookstate } from "@hookstate/core";
 
-export const chainState = hookstate("ETH");
+export const chainState = hookstate("BSC_TEST");
 
