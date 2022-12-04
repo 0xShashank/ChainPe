@@ -21,15 +21,16 @@ const getChainId = async () => {
   }
 };
 
-const getAccounts = async (key) => {
-  const CHAIN = await getChainFromID();
-  try {
-    const wallet = new ethers.Wallet(key);
-    const address = await wallet.address;
-    return address;
-  } catch (error) {
-    return error;
-  }
+export const getAccount = async () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const wallet = new ethers.Wallet(Web3AuthModal.provider.privKey);
+      const address = await wallet.address;
+      resolve(address);
+    } catch (error) {
+      reject(err);
+    }
+  });
 };
 
 export const getBalance = async () => {
@@ -95,42 +96,41 @@ const signMessage = async (key) => {
   }
 };
 
-export const sendPayment = async (vpa, name, amount, rate) => {
-  const CHAIN = await getChainFromID();
-  const ethersProvider = ethers.getDefaultProvider(CHAIN.providerUrl);
-  const wallet = new ethers.Wallet(
-    Web3AuthModal.provider.privKey,
-    ethersProvider
-  );
+export const sendPayment = async (
+  vpa: string,
+  name: string,
+  amount: string,
+  rate: string
+) => {
+  return new Promise(async (resolve, reject) => {
+    const CHAIN = await getChainFromID();
+    const ethersProvider = ethers.getDefaultProvider(CHAIN.providerUrl);
+    const wallet = new ethers.Wallet(
+      Web3AuthModal.provider.privKey,
+      ethersProvider
+    );
 
-  const contract = new ethers.Contract(
-    CHAIN.contract,
-    ChainPeABI.abi,
-    wallet
-  ) as ChainPe;
+    const contract = new ethers.Contract(
+      CHAIN.contract,
+      ChainPeABI.abi,
+      wallet
+    ) as ChainPe;
 
-  console.log(wallet.publicKey);
+    console.log(wallet.address);
 
-  const tx = await contract.pay(
-    vpa,
-    name,
-    ethers.utils.parseEther(amount),
-    ethers.utils.parseEther(rate),
-    {
-      value: ethers.utils.parseEther(
-        (parseInt(amount) / parseInt(rate)).toString()
-      ),
-    }
-  );
-  await tx.wait();
-  console.log("Transaction sent");
-  return tx.hash;
-};
-
-export default {
-  getChainId,
-  getAccounts,
-  getBalance,
-  sendTransaction,
-  signMessage,
+    const tx = await contract.pay(
+      vpa,
+      name,
+      ethers.utils.parseEther(amount),
+      ethers.utils.parseEther(rate),
+      {
+        value: ethers.utils.parseEther(
+          (parseInt(amount) / parseInt(rate)).toString()
+        ),
+      }
+    );
+    await tx.wait();
+    console.log("Transaction sent");
+    resolve(tx.hash);
+  });
 };

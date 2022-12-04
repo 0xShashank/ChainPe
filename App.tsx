@@ -25,14 +25,6 @@ import Dashboard from "./screens/Dashboard/Dashboard";
 const Stack = createStackNavigator();
 
 export default function App() {
-  useEffect(() => {
-    AsyncStorage.getItem("CHAIN_ID").then((chainId) => {
-      console.log(chainId);
-      AsyncStorage.setItem("CHAIN_ID", "BSC_TEST").then(() =>
-        changeChain("BSC_TEST")
-      );
-    });
-  }, []);
   return (
     <NavigationContainer>
       <Stack.Navigator>

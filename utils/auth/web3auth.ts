@@ -63,9 +63,7 @@ export const Web3AuthLogin: any = async () => {
       redirectUrl: resolvedRedirectUrl,
       mfaLevel: "none",
     });
-    const web3 = new Web3(Web3AuthModal.provider);
-    const address = (await web3.eth.getAccounts())[0];
-    
+    console.log("Web3AuthModal.provider", Web3AuthModal.provider.privKey);
   } catch (e) {
     console.log(e);
   }
