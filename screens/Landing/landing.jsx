@@ -27,7 +27,7 @@ const Landing = () => {
       <View style={styles.container_sub1}>
         <LandingText1 />
         <View>
-          <ButtonCustom title="Continue" />
+          <ButtonCustom title="Continue" route="AuthPage"/>
         </View>
       </View>
     </View>

@@ -28,9 +28,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Landing" component={Landing} options={{ headerShown: false }} />
         <Stack.Screen name="AuthPage" component={AuthPage} options={{ headerShown: false }} />
         <Stack.Screen name="CreatePersonalAccount" component={CreatePersonalAccount} options={{ headerShown: false }} />
-        <Stack.Screen name="Landing" component={Landing} options={{ headerShown: false }} />
         <Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />
         <Stack.Screen name="LoginPage" component={LoginPage} options={{ headerShown: false }} />
         <Stack.Screen name="PaymentFirst" component={PaymentFirst} options={{ headerShown: false }} />
