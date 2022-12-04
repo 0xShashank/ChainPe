@@ -17,4 +17,5 @@
 import { hookstate, useHookstate } from "@hookstate/core";
 
 export const chainState = hookstate("BSC_TEST");
+export const balanceState = hookstate(0);
 

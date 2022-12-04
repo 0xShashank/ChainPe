@@ -148,7 +148,6 @@ const PaymentFirst = () => {
   const payment = useHookstate(paymentState);
   const chain = useHookstate(chainState);
   const setPayment = () => {
-    swapTokens(chain.get());
     payment.set({
       ...payment.get(),
       amount: value,

@@ -32,7 +32,7 @@ const LoadingScreen = () => {
       payment.get().vpa,
       payment.get().name,
       payment.get().amount,
-      "20000",
+      "81",
       chain.get()
     ).then((res) => {
       navigation.navigate("SuccessScreen");

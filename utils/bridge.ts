@@ -6,10 +6,10 @@ export async function swap(wallet: any) {
   console.log(">> Request route");
   const routeRequest = {
     fromChainId: ChainId.POL, // Polygon
-    fromAmount: "100000000000000", // 1 USDT
-    fromTokenAddress: findDefaultToken(CoinKey.MATIC, ChainId.POL).address,
+    fromAmount: "10000", // 1 USDT
+    fromTokenAddress: findDefaultToken(CoinKey.USDC, ChainId.POL).address,
     toChainId: ChainId.POL, //
-    toTokenAddress: findDefaultToken(CoinKey.USDC, ChainId.POL).address,
+    toTokenAddress: findDefaultToken(CoinKey.MATIC, ChainId.POL).address,
   };
 
   const routeResponse = await Lifi.getRoutes(routeRequest);

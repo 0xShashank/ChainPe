@@ -14,15 +14,16 @@ import { useNavigation } from "@react-navigation/native";
 import { useHookstate } from "@hookstate/core";
 import { addressState } from "../../redux/addressSlice/index";
 import { tokenState, fetchAllTokens } from "../../redux/tokensSlice/index";
-import { chainState } from "../../redux/index";
+import { balanceState, chainState } from "../../redux/index";
 import { Web3AuthModal } from "../../utils/auth/web3Provider";
-import { getAccount } from "../../utils/auth/ethersRPC";
+import { getAccount, getBalance } from "../../utils/auth/ethersRPC";
 const { height, width } = Dimensions.get("window");
 import { fetchTokens } from "../../utils/fetchTokens";
 import Web3 from "web3";
 import { getChain, supportedChains } from "../../constants/supportedChains";
 import CoinShow from "../../components/CoinShow";
 import ChainShow from "../../components/ChainShow";
+import { paymentState } from "../../redux/paymentSlice";
 const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
@@ -362,20 +363,25 @@ const Dashboard = () => {
   const address = useHookstate(addressState);
   const chain = useHookstate(chainState);
   const tokens = useHookstate(tokenState);
+  const balance = useHookstate(balanceState);
+  const pay = useHookstate(paymentState);
   useEffect(() => {
     if (address.get()) {
+      getBalance(chain.get()).then((res) => {
+        balance.set(res);
+      });
       console.log("Fetching");
       fetchAllTokens(chain, address.get()).then((res) => {
         console.log(res);
         tokens.set(res);
       });
     }
-  }, [address.get(), chain.get()]);
+  }, [address.get(), chain.get(), pay.get()]);
   useEffect(() => {
     getAccount().then((add) => {
       console.log(add);
       address.set(add);
-    });
+    }); 
   }, [Web3AuthModal.provider]);
   return (
     <>
@@ -388,7 +394,7 @@ const Dashboard = () => {
               />
               <AccountCard
                 username={Web3AuthModal.provider.userInfo.name}
-                balance="500000"
+                balance={balance.get()}
               />
               <View>
                 <Text

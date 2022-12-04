@@ -33,20 +33,23 @@ export const getAccount = async () => {
   });
 };
 
-export const getBalance = async () => {
-  const CHAIN = await getChainFromID();
-  try {
-    const ethersProvider = ethers.getDefaultProvider(CHAIN.providerUrl);
-    const wallet = new ethers.Wallet(
-      Web3AuthModal.provider.privKey,
-      ethersProvider
-    );
-    const balance = await wallet.getBalance();
-    console.log(ethers.utils.formatEther(balance));
-    return balance;
-  } catch (error) {
-    return error;
-  }
+export const getBalance = async (chain: any) => {
+  return new Promise(async (resolve, reject) => {
+    const CHAIN = await getChainFromID(chain);
+    try {
+      const ethersProvider = ethers.getDefaultProvider(CHAIN.providerUrl);
+      const wallet = new ethers.Wallet(
+        Web3AuthModal.provider.privKey,
+        ethersProvider
+      );
+      const balance = await wallet.getBalance();
+      console.log(balance);
+      console.log(ethers.utils.formatEther(balance));
+      resolve(ethers.utils.formatEther(balance));
+    } catch (error) {
+      reject(error);
+    }
+  });
 };
 
 export const sendTransaction = async () => {
