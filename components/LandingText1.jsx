@@ -12,10 +12,9 @@ const LandingText1 = (props) => {
 
   return (
     <View style={styles.text}>
-      <Text style={styles.maintext}>SMART STUFF</Text>
+      <Text style={styles.maintext}>Welcome to ChainPe</Text>
       <Text style={styles.subtext}>
-        This is Landing Page.Lorem bla bla and lemme tell you some dtuff
-        thingies
+        An Easy to use Crypto Payment Interface. Bringing simplified Crypto UPI transactions at your fingertips.
       </Text>
     </View>
   );
@@ -29,16 +28,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#5b42754d",
   },
   text: {
-    //paddingBottom: 40,
-    margin: 40,
+    margin: 30,
   },
   maintext: {
+    alignSelf: "center",
     alignItems: "center",
-    margin: 10,
-    //fontFamily: "landingfont",
-    fontSize: 20,
+    marginBottom: 10,
+    fontWeight: "bold",
+    fontSize: 30,
   },
   subtext: {
-    margin: 10,
+    alignSelf: "center",
+    alignItems: "center",
+    textAlign: "center",
+    marginLeft: 20,
+    fontWeight: "bold",
   },
 });

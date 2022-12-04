@@ -52,10 +52,7 @@ const styles = StyleSheet.create({
     width: width,
     height: height * 0.69,
   },
-  text: {
-    //paddingBottom: 40,
-    margin: 40,
-  },
+
   maintext: {
     margin: 10,
     fontFamily: "landingfont",
