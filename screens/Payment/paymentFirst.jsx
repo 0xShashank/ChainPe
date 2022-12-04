@@ -14,6 +14,9 @@ import { useNavigation } from "@react-navigation/native";
 import ButtonCustom from "../../components/Button";
 import { useHookstate } from "@hookstate/core";
 import { paymentState } from "../../redux/paymentSlice/index";
+import { swapTokens } from "../../utils/auth/ethersRPC";
+import { chainState } from "../../redux";
+import { getChain } from "../../constants/supportedChains";
 
 const styles = StyleSheet.create({
   container: {
@@ -143,7 +146,9 @@ const PaymentFirst = () => {
   const [value, setValue] = React.useState();
   const [name, setName] = React.useState("");
   const payment = useHookstate(paymentState);
+  const chain = useHookstate(chainState);
   const setPayment = () => {
+    swapTokens(chain.get());
     payment.set({
       ...payment.get(),
       amount: value,

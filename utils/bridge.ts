@@ -1,15 +1,13 @@
 import LifiSDK, { ChainId, CoinKey, findDefaultToken } from "@lifi/sdk";
-import ethers from "ethers";
 
-const Lifi = new LifiSDK.default();
+const Lifi = new LifiSDK();
 
-async function swap(wallet) {
-
+export async function swap(wallet: any) {
   console.log(">> Request route");
   const routeRequest = {
     fromChainId: ChainId.POL, // Polygon
-    fromAmount: "10000", // 1 USDT
-    fromTokenAddress: findDefaultToken(CoinKey.USDT, ChainId.POL).address,
+    fromAmount: "100000000000000", // 1 USDT
+    fromTokenAddress: findDefaultToken(CoinKey.MATIC, ChainId.POL).address,
     toChainId: ChainId.POL, //
     toTokenAddress: findDefaultToken(CoinKey.USDC, ChainId.POL).address,
   };
@@ -22,7 +20,7 @@ async function swap(wallet) {
   // execute Route
   console.log(">> Start Execution");
   const settings = {
-    updateCallback: (updatedRoute) => {
+    updateCallback: (updatedRoute: any) => {
       let lastExecution;
       for (const step of updatedRoute.steps) {
         if (step.execution) {
@@ -37,5 +35,3 @@ async function swap(wallet) {
 
   console.log("DONE");
 }
-
-module.exports = swap

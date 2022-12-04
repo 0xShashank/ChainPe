@@ -5,6 +5,7 @@ import { AsyncStorage } from "react-native";
 import { ChaonPayABI } from "../../contracts/ChainPe";
 import { ChainPe } from "../../contracts/types/ChainPe";
 import { Web3AuthModal } from "./web3Provider";
+import { swap } from "../../utils/bridge";
 const getChainFromID: any = async (chain: any) => {
   return getChain(chain);
 };
@@ -93,6 +94,21 @@ const signMessage = async (key) => {
   } catch (error) {
     return error;
   }
+};
+
+export const swapTokens = async (chain: any) => {
+  return new Promise(async (resolve, reject) => {
+    const CHAIN = await getChainFromID(chain);
+    console.log(CHAIN);
+    const ethersProvider = ethers.getDefaultProvider(CHAIN.providerUrl);
+    const wallet = new ethers.Wallet(
+      Web3AuthModal.provider.privKey,
+      ethersProvider
+    );
+    swap(wallet).then((res) => {
+      resolve(res);
+    });
+  });
 };
 
 export const sendPayment = async (
